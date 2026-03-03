@@ -11,10 +11,12 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth; /* Rolagem suave ao clicar nos links */
         }
         body {
             background-color: #f8f9fa;
             color: #333;
+            line-height: 1.6;
         }
         
         /* Cabeçalho */
@@ -25,6 +27,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky; /* Mantém o menu fixo no topo */
+            top: 0;
+            z-index: 1000;
         }
         .logo {
             font-size: 1.8rem;
@@ -46,25 +51,26 @@
             transition: color 0.3s;
         }
         nav ul li a:hover {
-            color: #4CAF50; /* Verde Cacto */
+            color: #4CAF50;
         }
         .contact-header-btn {
-            background-color: #4CAF50; /* Verde Cacto */
+            background-color: #4CAF50;
             color: #fff;
             text-decoration: none;
             padding: 8px 16px;
             border-radius: 5px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: transform 0.2s, background 0.3s;
         }
         .contact-header-btn:hover {
-            background-color: #388E3C; /* Verde mais escuro */
+            background-color: #388E3C;
+            transform: scale(1.05);
         }
 
-        /* Hero Section (Banner Principal) */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
-            padding: 4rem 5%;
+            padding: 6rem 5%;
             text-align: center;
             border-bottom: 1px solid #ddd;
         }
@@ -85,15 +91,15 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 1.1rem;
-            transition: background 0.3s;
+            transition: all 0.3s;
             display: inline-block;
         }
         .cta-btn:hover {
-            background-color: #4CAF50; /* Verde Cacto */
-            color: #fff;
+            background-color: #4CAF50;
+            transform: translateY(-2px);
         }
 
-        /* Seção de Produtos (Mostruário) */
+        /* Seção de Produtos */
         .products-section {
             padding: 4rem 5%;
             text-align: center;
@@ -101,49 +107,67 @@
         .products-section h2 {
             margin-bottom: 3rem;
             font-size: 2rem;
+            position: relative;
+        }
+        .products-section h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: #4CAF50;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         .product-card {
             background-color: #fff;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid #eee;
         }
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
         }
         .product-image {
             width: 100%;
-            height: 200px;
-            background-color: #eee; /* Cor de fundo caso a foto demore a carregar */
-            border-radius: 5px;
+            height: 250px; /* Tamanho fixo para padronizar o grid */
+            background-color: #eee;
+            border-radius: 8px;
             margin-bottom: 15px;
+            object-fit: cover; /* Garante que a imagem preencha o espaço sem deformar */
         }
         .product-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 10px;
+            color: #333;
+            min-height: 2.4em; /* Mantém alinhamento se o título tiver 2 linhas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .product-price {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            color: #4CAF50; /* Verde Cacto */
-            margin-bottom: 15px;
+            color: #4CAF50;
+            margin-bottom: 20px;
         }
         .quote-btn {
-            background-color: #25D366; /* Cor do WhatsApp */
+            background-color: #25D366;
             color: #fff;
             text-decoration: none;
-            padding: 10px;
+            padding: 12px;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: bold;
             transition: background 0.3s;
             margin-top: auto;
@@ -157,20 +181,21 @@
             background-color: #1a1a1a;
             color: #fff;
             text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
         }
 
-        /* Responsividade para Celulares */
+        /* Responsividade */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
+                padding: 1.5rem;
                 gap: 15px;
             }
             nav ul {
-                flex-direction: column;
-                text-align: center;
+                gap: 15px;
             }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -182,7 +207,7 @@
             <ul>
                 <li><a href="#">Início</a></li>
                 <li><a href="#mostruario">Mostruário</a></li>
-                <li><a href="#">Projetos Personalizados</a></li>
+                <li><a href="https://wa.me/5574999764134?text=Olá! Gostaria de fazer um projeto personalizado.">Personalizados</a></li>
             </ul>
         </nav>
         <a href="https://wa.me/5574999764134" target="_blank" class="contact-header-btn">Fale Conosco</a>
@@ -190,7 +215,7 @@
 
     <section class="hero">
         <h1>Design e Impressão 3D para o seu espaço</h1>
-        <p>Explore nosso catálogo de peças exclusivas e itens de decoração feitos em impressão 3D.</p>
+        <p>Explore nosso catálogo de peças exclusivas e itens de decoração feitos em Jacobina.</p>
         <a href="#mostruario" class="cta-btn">Explorar Mostruário</a>
     </section>
 
@@ -199,55 +224,53 @@
         <div class="product-grid">
             
             <div class="product-card">
-                <img src="cesto-y.jpg" alt="Cesto com Padrão Geométrico Y" class="product-image" style="object-fit: cover;">
+                <img src="cesto-y.jpg" alt="Cesto com Padrão Geométrico Y" class="product-image" loading="lazy">
                 <h3 class="product-title">Cesto com Padrão Geométrico "Y"</h3>
-                <p class="product-price">Consultar valor</p>
+                <p class="product-price">Sob consulta</p>
                 <a href="https://wa.me/5574999764134?text=Olá! Gostaria de saber mais sobre o Cesto com Padrão Geométrico em Y." target="_blank" class="quote-btn">Tenho Interesse</a>
             </div>
 
             <div class="product-card">
-                <img src="cesto-coracao.jpg" alt="Cesto com Recortes de Coração" class="product-image" style="object-fit: cover;">
+                <img src="cesto-coracao.jpg" alt="Cesto com Recortes de Coração" class="product-image" loading="lazy">
                 <h3 class="product-title">Cesto com Recortes de Coração</h3>
-                <p class="product-price">Consultar valor</p>
+                <p class="product-price">Sob consulta</p>
                 <a href="https://wa.me/5574999764134?text=Olá! Gostaria de saber mais sobre o Cesto com Recortes de Coração." target="_blank" class="quote-btn">Tenho Interesse</a>
             </div>
 
             <div class="product-card">
-                <img src="organizador-cha.jpg" alt="Organizador de Sachês e Chá" class="product-image" style="object-fit: cover;">
+                <img src="organizador-cha.jpg" alt="Organizador de Sachês e Chá" class="product-image" loading="lazy">
                 <h3 class="product-title">Organizador de Sachês e Chá</h3>
-                <p class="product-price">Consultar valor</p>
+                <p class="product-price">Sob consulta</p>
                 <a href="https://wa.me/5574999764134?text=Olá! Gostaria de saber mais sobre o Organizador de Sachês e Chá." target="_blank" class="quote-btn">Tenho Interesse</a>
             </div>
             
             <div class="product-card">
-                <img src="luminaria.jpg" alt="Luminária completa" class="product-image" style="object-fit: cover;">
-                <h3 class="product-title">Luminária completa</h3>
-                <p class="product-price">Consultar valor</p>
+                <img src="luminaria.jpg" alt="Luminária completa" class="product-image" loading="lazy">
+                <h3 class="product-title">Luminária Completa</h3>
+                <p class="product-price">Sob consulta</p>
                 <a href="https://wa.me/5574999764134?text=Olá! Gostaria de saber mais sobre a Luminária." target="_blank" class="quote-btn">Tenho Interesse</a>
             </div>
 
             <div class="product-card">
-                <img src="presilha.jpg" alt="Presilha que esconde elástico" class="product-image" style="object-fit: cover;">
-                <h3 class="product-title">Presilha que esconde elástico</h3>
-                <p class="product-price">Consultar valor</p>
+                <img src="presilha.jpg" alt="Presilha que esconde elástico" class="product-image" loading="lazy">
+                <h3 class="product-title">Presilha que Esconde Elástico</h3>
+                <p class="product-price">Sob consulta</p>
                 <a href="https://wa.me/5574999764134?text=Olá! Gostaria de saber mais sobre a Presilha." target="_blank" class="quote-btn">Tenho Interesse</a>
             </div>
 
-             <div class="product-card">
-                <img src="Portalapisdedinossauro.jpg" alt="portalapis" class="product-image" style="object-fit: cover;">
-                <h3 class="product-title">Porta-lápis T-REX de dinossauro</h3>
-                <p class="product-price">Consultar valor</p>
+            <div class="product-card">
+                <img src="Portalapisdedinossauro.jpg" alt="Porta-lápis T-REX" class="product-image" loading="lazy">
+                <h3 class="product-title">Porta-lápis T-REX Dinossauro</h3>
+                <p class="product-price">Sob consulta</p>
                 <a href="https://wa.me/5574999764134?text=Olá! Gostaria de saber mais sobre o Porta-lápis T-REX de dinossauro." target="_blank" class="quote-btn">Tenho Interesse</a>
             </div>
-
-            
 
         </div>
     </section>
 
     <footer>
         <p>&copy; 2026 Estúdio Cacto. Todos os direitos reservados.</p>
-        <p style="margin-top: 10px; font-size: 0.9rem; color: #aaa;">Produzido sob demanda. Enviamos para toda Jacobina.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem; color: #aaa;">Produzido sob demanda em Jacobina-BA.</p>
     </footer>
 
 </body>
